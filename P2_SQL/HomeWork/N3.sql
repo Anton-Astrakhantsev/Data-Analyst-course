@@ -18,4 +18,4 @@ select
 from
 	customer as cus
 	left join address as adr on(cus.address_id=adr.address_id)
-	left join city using(city_id)
+	left join city using(city_id);
