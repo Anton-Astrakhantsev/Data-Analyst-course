@@ -1,28 +1,28 @@
 create table language (
-  id integer PK,
+  id integer primary key,
   name varchar (255)
 );
 
 create table nation (
-  id integer PK,
+  id integer primary key,
   name varchar (255),
   alignment varchar (6)
 );
 
 create table country (
-  id integer PK,
+  id integer primary key,
   name varchar (255),
   population bigint
 );
 
 create table country_nation (
-  id_country integer PK,
-  id_nation integer PK
+  id_country integer,
+  id_nation integer
 );
 
 create table nation_language (
-  id_nation integer PK,
-  id_language integer PK
+  id_nation integer,
+  id_language integer
 );
 
 insert into language values
@@ -41,7 +41,7 @@ insert into nation values
 (4, 'Hobbits', 'Good'),
 (5, 'Ents', 'Good'),
 (6, 'Orcs', 'Evil'),
-(7, 'Trolls', 'Evil')
+(7, 'Trolls', 'Evil');
 
 insert into country values
 (1, 'Gondor'),
@@ -54,7 +54,7 @@ insert into country values
 (8, 'Mordor'),
 (9, 'Isengard');
 
-insert into country_nation 
+insert into country_nation values
 (1, 2),
 (2, 2),
 (3, 4),
@@ -68,6 +68,7 @@ insert into country_nation
 (8, 7),
 (9, 5),
 (9, 6);
+
 
 insert into nation_language values
 (1, 1),
