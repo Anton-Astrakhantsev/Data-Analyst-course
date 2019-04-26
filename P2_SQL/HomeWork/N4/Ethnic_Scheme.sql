@@ -69,7 +69,6 @@ insert into country_nation values
 (9, 5),
 (9, 6);
 
-
 insert into nation_language values
 (1, 1),
 (1, 2),
