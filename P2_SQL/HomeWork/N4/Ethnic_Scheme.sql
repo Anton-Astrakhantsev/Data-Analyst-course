@@ -6,7 +6,7 @@ create table language (
 create table nation (
   id integer primary key,
   name varchar (255),
-  alignment varchar (6)
+  alignment varchar (6) check(alignment in ('Good', 'Evil'))
 );
 
 create table country (
