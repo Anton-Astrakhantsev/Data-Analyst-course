@@ -16,4 +16,4 @@ from
 order by
 	payment_date desc,
 	payment_id desc
-limit 20;
+limit 10;
