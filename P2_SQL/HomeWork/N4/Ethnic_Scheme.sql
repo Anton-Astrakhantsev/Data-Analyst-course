@@ -16,12 +16,14 @@ create table country (
 
 create table country_nation (
   id_country integer,
-  id_nation integer
+  id_nation integer,
+  primary key (id_country, id_nation)
 );
 
 create table nation_language (
   id_nation integer,
-  id_language integer
+  id_language integer,
+  primary key (id_nation, id_language)
 );
 
 insert into language values
