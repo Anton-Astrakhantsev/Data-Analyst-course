@@ -1,0 +1,46 @@
+create table language (
+  id integer PK,
+  name varchar (255)
+);
+
+create table nation (
+  id integer PK,
+  name varchar (255),
+  alignment varchar (6)
+);
+
+create table country (
+  id integer PK,
+  name varchar (255),
+  population bigint
+);
+
+create table country_nation (
+  id_country integer PK,
+  id_nation integer PK
+);
+
+create table nation_language (
+  id_nation integer PK,
+  id_language integer PK
+);
+
+insert into language values
+(1, 'Quenya'),
+(2, 'Sindarin'),
+(3, 'Westron'),
+(4, 'Rohirric'),
+(5, 'Khuzdul'),
+(6, 'Black Speech'),
+(7, 'Entish');
+
+insert into nation values
+(1, 'Elves', 'Good'),
+(2, 'Men', 'Good'),
+(3, 'Dwarves', 'Good'),
+(4, 'Hobbits', 'Good'),
+(5, 'Ents', 'Good'),
+(6, 'Orcs', 'Evil'),
+(7, 'Trolls', 'Evil')
+
+insert into country values
