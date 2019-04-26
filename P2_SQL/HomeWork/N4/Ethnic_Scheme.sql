@@ -11,8 +11,7 @@ create table nation (
 
 create table country (
   id integer primary key,
-  name varchar (255),
-  population bigint
+  name varchar (255)
 );
 
 create table country_nation (
