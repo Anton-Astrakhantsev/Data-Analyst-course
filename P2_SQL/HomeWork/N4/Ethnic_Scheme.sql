@@ -44,3 +44,41 @@ insert into nation values
 (7, 'Trolls', 'Evil')
 
 insert into country values
+(1, 'Gondor'),
+(2, 'Rohan'),
+(3, 'Shire'),
+(4, 'Mirkwood'),
+(5, 'Rivendell'),
+(6, 'Moria'),
+(7, 'Erebor'),
+(8, 'Mordor'),
+(9, 'Isengard');
+
+insert into country_nation 
+(1, 2),
+(2, 2),
+(3, 4),
+(4, 1),
+(5, 1),
+(6, 3),
+(6, 6),
+(6, 7),
+(7, 6),
+(8, 6),
+(8, 7),
+(9, 5),
+(9, 6);
+
+
+insert into nation_language values
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 3),
+(2, 4),
+(3, 3),
+(3, 5),
+(4, 3),
+(5, 7),
+(6, 6),
+(7, 6);
