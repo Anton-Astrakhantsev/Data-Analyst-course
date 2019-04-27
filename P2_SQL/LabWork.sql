@@ -4,12 +4,10 @@
 select
 	first_name,
 	last_name,
-	email,
-	address
+	concat('email address is ', email) as email
 from
 	payment as r
 	left join customer using (customer_id)
-	left join address using (address_id)
 where
 	payment_date::date between '2007-04-10' and '2007-04-13'
 group by first_name, last_name, email, address
