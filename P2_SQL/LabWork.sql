@@ -1,3 +1,4 @@
+
 -- Cоставить список клиентов по имени и фамилии вместе с их адресом электронной почты,
 -- чтобы отправить благодарность 5 самым дорогим клиентам, которые арендовали фильмы с 10 по 13 апреля
 select
@@ -29,3 +30,24 @@ from
 	left join category as c using (category_id)
 group by c.name
 order by avg_pay desc
+
+
+-- Сколько арендованных фильмов было возвращено в срок, до срока возврата и после,
+-- выведите максимальную разницу со сроком?
+with rental_scheme as (
+select
+	rental_id,
+	rental_duration as dur,
+	extract(day from return_date - rental_date) as back
+from
+	rental as r
+	left join inventory as i using (inventory_id)
+	left join film as f using (film_id)
+)
+select
+	count(case when back = dur then rental_id else null end) as return_in_line,
+	count(case when back < dur then rental_id else null end) as return_before_line,
+	count(case when back > dur then rental_id else null end) as return_after_line,
+	max(back - dur) as max_late_return
+from
+	rental_scheme
