@@ -1,0 +1,19 @@
+-- Создание базы
+use people
+
+-- Создание коллекций людей
+db.people.insertMany([
+	{first_name: 'Harry', last_name: 'Potter', house:'Gryffindor'},
+	{first_name: 'Ron', last_name: 'Weasley', house:'Gryffindor'},
+	{first_name: 'Hermione', last_name: 'Granger', house:'Gryffindor'},
+	{first_name: 'Draco', last_name: 'Malfoy', house:'Slytherin'},
+	{first_name: 'Tom', last_name: 'Riddle', house:'Slytherin'}
+	]);
+
+-- Добавление контактов
+db.people.update({first_name: 'Harry', last_name: 'Potter'},
+  {$set: {contacts: [{address: '4 Privet Drive'}, {owl: 'Hedwig'}]}});
+db.people.update({first_name: 'Ron', last_name: 'Weasley'},
+  {$set: {contacts: [{address: 'The Burrow'}]}});
+db.people.update({first_name: 'Draco', last_name: 'Malfoy'},
+  {$set: {contacts: [{address: 'Malfoy Manor'}]}});
