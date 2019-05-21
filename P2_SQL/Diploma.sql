@@ -49,4 +49,31 @@ from
 	max_plane_airports
 	left join bookings.airports using (airport_code)
 
--- 
+-- Между какими городами пассажиры делали пересадки?
+with ways as (
+select
+	ticket_no,
+	da.city as dep_city,
+	aa.city as arr_city,
+	first_value(da.city) over (partition by ticket_no order by actual_departure asc)
+	|| ' - ' ||
+	first_value(aa.city) over (partition by ticket_no order by actual_departure desc) as route
+from
+	bookings.ticket_flights
+	left join bookings.flights as f using (flight_id)
+	left join bookings.airports as da on(f.departure_airport=da.airport_code)
+	left join bookings.airports as aa on(f.arrival_airport=aa.airport_code)
+order by ticket_no asc, actual_departure asc
+),
+transfer as (
+select ticket_no
+from ways
+group by ticket_no
+having count(ticket_no) > 1
+)
+select
+	distinct route
+from
+	ways
+where
+	ticket_no in (select ticket_no from transfer)
