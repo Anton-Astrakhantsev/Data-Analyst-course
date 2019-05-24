@@ -61,8 +61,8 @@ insert into chief values
 (10, 7, '"Janitor"', 7);
 
 create table mark (
-university_id integer,
-employee_id integer primary key,
+student_id integer primary key,
+employee_id integer,
 average_mark numeric);
 
 insert into mark values
