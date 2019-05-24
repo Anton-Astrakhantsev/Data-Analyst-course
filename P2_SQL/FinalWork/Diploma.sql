@@ -111,7 +111,36 @@ from
 where
 	ticket_no in (select ticket_no from transfer)
 group by route
-order by transfer_count desc
-limit 5;
+order by transfer_count desc;
 
 
+-- 4.2 Какие города используют для пересадок чаще?
+with ways as (
+select
+	ticket_no,
+	da.city as dep_city,
+	aa.city as arr_city,
+	first_value(da.city) over (partition by ticket_no order by actual_departure asc) as start_city,
+	first_value(aa.city) over (partition by ticket_no order by actual_departure desc) as finish_city
+from
+	bookings.ticket_flights
+	left join bookings.flights as f using (flight_id)
+	left join bookings.airports as da on(f.departure_airport=da.airport_code)
+	left join bookings.airports as aa on(f.arrival_airport=aa.airport_code)
+order by ticket_no asc, actual_departure asc
+),
+transfer as (
+select ticket_no
+from ways
+group by ticket_no
+having count(ticket_no) > 1
+)
+select
+	arr_city,
+	count(case when arr_city != finish_city then ticket_no else null end) as transfer_count
+from
+	ways
+where
+	ticket_no in (select ticket_no from transfer)
+group by arr_city
+order by transfer_count desc;
