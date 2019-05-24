@@ -15,7 +15,7 @@ insert into department values
 create table employee (
 id integer primary key,
 department_id integer,
-chief_doc_id integer,
+chief_id integer,
 name varchar,
 num_public integer
 );
