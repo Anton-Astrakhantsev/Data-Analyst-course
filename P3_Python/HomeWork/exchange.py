@@ -1,3 +1,5 @@
+import requests
+
 class Rate:
     def __init__(self, format='value'):
         self.format = format
